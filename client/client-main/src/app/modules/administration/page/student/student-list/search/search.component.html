@@ -1,0 +1,32 @@
+<form class="mg-b-20">
+  <div class="row gutters-8">
+    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tìm theo Id</mat-label>
+        <input matInput type="number" placeholder="Nhập mã học sinh" [(ngModel)]="dataSearchStu.stuId" name="stuId"/>
+      </mat-form-field>
+    </div>
+    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tìm theo tên</mat-label>
+        <input matInput type="text" placeholder="Nhập tên học sinh" [(ngModel)]="dataSearchStu.stuName" name="stuName" />
+      </mat-form-field>
+    </div>
+    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Lớp</mat-label>
+        <mat-select [(ngModel)]="dataSearchStu.classId" name="food">
+          <mat-option value= "" >Tất cả</mat-option>
+          <mat-option *ngFor="let class of listClass" [value]="class.id">
+            {{ class.className }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-2-xxxl col-xl-2 col-lg-3 col-12 form-group">
+      <button type="button" class="fw-btn-fill btn-gradient-yellow" (click)="obSubmitSearch()">
+        Tìm kiếm
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,75 @@
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thông tin học sinh</h3>
+      </div>
+    </div>
+    <div class="single-info-details row">
+      <div class="col-md-3">
+        <div class="item-img" *ngFor="let img of stu.listImage">
+          <img
+            src="{{this.apiHost}}/{{img.location}}"
+            alt="student"
+          />
+        </div>
+        <figcaption>
+          <div class="careerfy-fileUpload">
+            <span><i class="fas fa-times careerfy-add"></i> Sửa ảnh</span>
+            <input type="file" class="careerfy-upload" (change)="onChangeImage($event)"/>
+          </div>  
+        </figcaption>
+      </div>
+      
+      <div class="item-content">
+        <div class="header-inline item-header">
+          <h3 class="text-dark-medium font-medium">{{ stu.stuName }}</h3>
+          <div class="header-elements">
+            <ul>
+              <li>
+                <a href="a2m/student/update/{{stu.id}}"><i class="far fa-edit"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="info-table table-responsive">
+          <table class="table text-nowrap">
+            <tbody>
+              <tr>
+                <td>Mã sinh viên:</td>
+                <td class="font-medium text-dark-medium">{{ stu.id }}</td>
+              </tr>
+              <tr>
+                <td>Họ và tên:</td>
+                <td class="font-medium text-dark-medium">{{ stu.stuName }}</td>
+              </tr>
+              <tr>
+                <td>Giới tính:</td>
+                <td class="font-medium text-dark-medium">{{ stu.gender }}</td>
+              </tr>
+
+              <tr>
+                <td>Ngày sinh:</td>
+                <td class="font-medium text-dark-medium">{{ stu.birthday }}</td>
+              </tr>
+              <tr>
+                <td>Ngày nhập học:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ stu.admissionDate }}
+                </td>
+              </tr>
+              <tr>
+                <td>Địa chỉ:</td>
+                <td class="font-medium text-dark-medium">{{ stu.address }}</td>
+              </tr>
+              <tr>
+                <td>Tình trạng:</td>
+                <td class="font-medium text-dark-medium">{{ stu.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

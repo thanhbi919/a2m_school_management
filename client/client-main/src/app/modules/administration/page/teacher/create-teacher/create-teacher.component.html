@@ -1,0 +1,234 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý giáo viên</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thêm giáo viên mới</h3>
+      </div>
+
+    </div>
+    <form [formGroup]="createFormGroup" (ngSubmit)="onSubmit()" class="new-added-form">
+      <div class="row" formGroupName="teacher">
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Họ và tên *</label>
+          <input formControlName="teacherName" name="name" type="text" placeholder="" class="form-control" />
+          <div *ngIf="teacherName?.invalid && (teacherName?.dirty || teacherName?.touched)"
+            class="err">
+
+            <div *ngIf="teacherName?.errors?.required" class="err">
+              Thiếu Họ và tên
+            </div>
+
+            <div *ngIf="teacherName?.errors?.minlength" class="err">
+              Họ và tên ít nhất là 2 kí tự
+            </div>
+
+            <div *ngIf="teacherName?.errors?.maxlength" class="err">
+              Họ và tên nhiều nhất là 50 kí tự
+            </div>
+
+            <div *ngIf="teacherName?.errors?.pattern" class="err">
+              sai định dạng
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Giới tính *</label>
+          <select formControlName="gender" name="gender" class="select2" class="form-control">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Không xác định">Không xác định</option>
+          </select>
+          <div *ngIf="gender?.invalid && (gender?.dirty || gender?.touched)" class="err">
+
+            <div *ngIf="gender?.errors?.required" class="err">
+              Thiếu giới tính
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Ngày sinh *</label>
+          <input [(ngModel)]="teacher.birthday" name="birthday" type="text" placeholder="dd/mm/yyyy"
+            class="form-control air-datepicker" />
+          <i class="far fa-calendar-alt"></i>
+        </div> -->
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Ngày sinh *</label>
+          <input formControlName="birthday" name="birthday" type="text" placeholder="dd/mm/yyyy" class="form-control" />
+          <div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)" class="err">
+
+            <div *ngIf="birthday?.errors?.required" class="err">
+              Thiếu ngày sinh
+            </div>
+
+            <div *ngIf="birthday?.errors?.pattern" class="err">
+              Sai định dạng dd/mm/yyyy
+            </div>
+
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Địa chỉ *</label>
+          <input formControlName="address" name="address" type="text" placeholder="xin nhập địa chỉ"
+            class="form-control" />
+          <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="err">
+
+            <div *ngIf="address?.errors?.required" class="err">
+              Thiếu địa chi
+            </div>
+
+            <div *ngIf="address?.errors?.minlength" class="err">
+              ít nhất 5 ký tự
+            </div>
+
+          </div>
+        </div>
+
+        <!---->
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>E-Mail</label>
+          <input formControlName="email" type="email" placeholder="xin nhập Email" class="form-control" />
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="err">
+
+            <div *ngIf="email?.errors?.required" class="err">
+              Thiếu Email
+            </div>
+
+            <div *ngIf="email?.errors?.pattern" class="err">
+              Sai định dạng
+            </div>
+
+          </div>
+        </div>
+        <!---->
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Số điện thoại</label>
+          <input formControlName="telephone" name="telephone" type="tel" placeholder="số điện thoại"
+            class="form-control" />
+          <div *ngIf="telephone?.invalid && (telephone?.dirty || telephone?.touched)" class="err">
+
+            <div *ngIf="telephone?.errors?.required" class="err">
+              thiếu Số Điện Thoại
+            </div>
+
+            <div *ngIf="telephone?.errors?.pattern" class="err">
+              Sai định dạng
+            </div>
+
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Trình Độ *</label>
+          <select formControlName="level" name="level" class="select2" class="form-control">
+            <option value="Tiến sĩ">Tiến sĩ</option>
+            <option value="Thạc sỹ">Thạc sỹ</option>
+            <option value="Cử nhân">Cử nhân</option>
+            <option value="Cao đẳng">Cao đẳng</option>
+            <option value="Trung cấp">Trung cấp</option>
+            <option value="Trung cấp nghề">Trung cấp nghề</option>
+          </select>
+          <div *ngIf="level?.invalid && (level?.dirty || level?.touched)" class="err">
+
+            <div *ngIf="level?.errors?.required" class="err">
+              thiếu Trình Độ
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Năm tốt nghiệp *</label>
+          <input formControlName="graduationYear" name="graduationYear" type="text" placeholder="yyyy"
+            class="form-control" />
+          <div *ngIf="graduationYear?.invalid && (graduationYear?.dirty || graduationYear?.touched)"
+            class="err">
+
+            <div *ngIf="graduationYear?.errors?.required" class="err">
+              thiếu Năm tốt nghiệp
+            </div>
+
+            <div *ngIf="graduationYear?.errors?.pattern" class="err">
+              Sai định dạng yyyy
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>thời gian vào làm việc *</label>
+          <input formControlName="workStartDate" name="workStartDate" type="text" placeholder="dd/mm/yyyy"
+            class="form-control" />
+          <div *ngIf="workStartDate?.invalid && (workStartDate?.dirty || workStartDate?.touched)"
+            class="err">
+
+            <div *ngIf="workStartDate?.errors?.required" class="err">
+              Thiếu thời gian vào làm việc
+            </div>
+
+            <div *ngIf="workStartDate?.errors?.pattern" class="err">
+              Sai định dạng dd/mm/yyyy
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Chọn môn học</label>
+          <select formControlName="objSubject" name="objSubject" class="select2" class="form-control">
+            <option *ngFor="let tempSub of subjects" [ngValue]="tempSub">
+              {{tempSub.subjectName}}
+            </option>
+          </select>
+          <div *ngIf="objSubject?.invalid && (objSubject?.dirty || objSubject?.touched)"
+            class="err">
+            <div *ngIf="objSubject?.errors?.required" class="err">
+              Thiếu Bộ Môn
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-12 form-group">
+          <label>Trạng thái *</label>
+          <input formControlName="status" name="status" type="text" placeholder="xin nhập địa chỉ"
+            class="form-control" />
+          <div *ngIf="status?.invalid && (status?.dirty || status?.touched)" class="err">
+
+            <div *ngIf="status?.errors?.required" class="err">
+              Thiếu trạng thái
+            </div>
+
+            <div *ngIf="status?.errors?.minlength" class="err">
+              Trạng thái phải hơn 2 kí tự
+            </div>
+
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-6 col-12 form-group">
+          <label>Ghi chú</label>
+          <textarea class="textarea form-control" name="message" id="form-message" cols="10" rows="9"></textarea>
+        </div> -->
+        <div class="col-lg-6 col-12 form-group mg-t-30">
+          <label class="text-dark-medium">Thêm ảnh đại diện</label>
+          <input formControlName="avatar" name="avatar" (change)="onClickFile($event)"  type="file" class="form-control-file" />
+          <ng-container *ngIf="selectedFiles != undefined">
+            <img [src]="url" alt="" width="200px" height="200px" style="border-radius: 5px;margin-top: 15px;">
+          </ng-container>  
+          <div *ngIf="avatar?.invalid && (avatar?.dirty || avatar?.touched)" class="err">
+
+            <div *ngIf="avatar?.errors?.required" class="err">
+              Thiếu ảnh đại diện
+            </div>        
+          </div>  
+        </div>
+        
+        <div class="col-12 form-group mg-t-8">
+          <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">
+            Thêm mới
+          </button>          
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,151 @@
+<div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+  <div class="mobile-sidebar-header d-md-none">
+    <div class="header-logo">
+      <a href="/a2m/dashboard"><img src="../../../assets/img/logo1.png" alt="logo" /></a>
+    </div>
+  </div>
+  <div class="sidebar-menu-content">
+    <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+      <li class="nav-item sidebar-nav-item">
+        <a href="javascript:void(0)" class="nav-link"
+          ><i class="flaticon-dashboard"></i><span>Thống kê</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="dashboard" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Quản trị</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item sidebar-nav-item">
+        <a href="javascript:void(0)" class="nav-link"
+          ><i class="flaticon-classmates"></i><span>Quản lý học sinh</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="student" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Danh sách học sinh</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="student/create" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm học sinh mới</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="student/subclass/add" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Nhật ký phân chia lớp</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="role==='Manager'" class="nav-item sidebar-nav-item">
+        <a  href="javascript:void(0)" class="nav-link"
+          ><i class="flaticon-multiple-users-silhouette"></i
+          ><span>Quản lý giáo viên</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="teacher" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Danh sách giáo viên</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="teacher/create" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm giáo viên mới</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item sidebar-nav-item">
+        <a href="javascript:void(0)" class="nav-link"
+          ><i class="flaticon-couple"></i><span>Quản lý liên hệ học sinh</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="parent" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Tất cả phụ huynh</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="parent/create" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm liên hệ phụ huynh mới</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item sidebar-nav-item">
+        <a href="javascript:void(0)" class="nav-link"
+          ><i
+            class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"
+          ></i
+          ><span>Quản lý lớp học</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="class" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Danh sách lớp</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="class/create" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm lớp mới</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="class/add-subject" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm môn học cho lớp</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item sidebar-nav-item" *ngIf="role=='Manager'">
+        <a href="javascript:void(0)" class="nav-link"
+          ><i
+            class="flaticon-open-book"
+          ></i
+          ><span>Quản lý môn học</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="subject" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Danh sách môn học</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="subject/create" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm môn học mới</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="role=='Manager'" class="nav-item sidebar-nav-item">
+        <a  href="javascript:void(0)" class="nav-link"
+          ><i
+            class="flaticon-settings"
+          ></i
+          ><span>Quản lý tài khoản</span></a
+        >
+        <ul class="nav sub-group-menu">
+          <li class="nav-item">
+            <a routerLink="account" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Danh sách tài khoản</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="account/create" routerLinkActive="menu-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+              ><i class="fas fa-angle-right"></i>Thêm môn tài khoản mới</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="javascript:void(0)" class="nav-link" (click)="logout()"
+          ><i class="flaticon-turn-off"></i><span>Đăng xuất</span></a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="breadcrumbs-area">
+    <h1>Quản lý môn học</h1>
+</div>
+<div class="row">
+    <div class="col-12-xxxl col-12">
+        <div class="card height-auto">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Danh sách môn học</h3>
+                    </div>
+                    <!-- <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-expanded="false">...</a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i
+                                    class="fas fa-times text-orange-red"></i>Close</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                        </div>
+                    </div> -->
+                </div>
+                <form class="mg-b-20">
+                    <div class="row gutters-8">
+                        <div class="col-lg-10 col-12 form-group">
+                            <input #myNameInput (keyup.enter)="doSearch(myNameInput.value)" type="text" placeholder="Nhập tên môn học ..." class="form-control">
+                        </div>                        
+                        <div class="col-lg-2 col-12 form-group">
+                            <button (click)="doSearch(myNameInput.value)" type="submit"
+                                class="fw-btn-fill btn-gradient-yellow">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table display data-table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tên môn học</th>
+                                <th>Trạng thái</th>                                
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tempSubject of subjects">
+                                <td>{{tempSubject.id}}</td>
+                                <td>{{tempSubject.subjectName}}</td> 
+                                <td>{{tempSubject.status?"Hoạt động":"Không hoạt động"}}</td>                                
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="#" data-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <span class="flaticon-more-button-of-three-dots"></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <button (click)="onDelete(tempSubject.id)" class="dropdown-item"><i
+                                                    class="fas fa-times text-orange-red"></i>&ensp;Xoá</button>
+                                            <button (click)="onUpdate(tempSubject.id)" class="dropdown-item"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>&ensp;Sửa</button>                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

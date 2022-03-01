@@ -1,0 +1,131 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý học sinh</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thêm nhật kí phân lớp</h3>
+      </div>
+    </div>
+    <form
+      [formGroup]="subclassForm"
+      (ngSubmit)="onSubmit()"
+      class="new-added-form"
+    >
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Mã sinh viên * </label>
+          <mat-form-field class="full-width" appearance="fill">
+            <input
+              type="number"
+              matInput
+              formControlName="stuId" readonly="true"
+              placeholder="Nhập mã sinh viên"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Lớp *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn lớp</mat-label>
+            <mat-select formControlName="classId">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let c of listClass" [value]="c.id">{{
+                c.className
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataSubclassForm.classId.invalid &&
+              (dataSubclassForm.classId.dirty ||
+                dataSubclassForm.classId.touched)
+            "
+          >
+            <div *ngIf="dataSubclassForm.classId.errors">
+              <div *ngIf="dataSubclassForm.classId.errors.required">
+                <span class="err">Lớp học còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Năm học * </label>
+          <mat-form-field class="full-width" appearance="fill">
+            <input
+              type="text"
+              matInput
+              formControlName="year"
+              placeholder="2020-2021"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataSubclassForm.year.invalid &&
+              (dataSubclassForm.year.dirty || dataSubclassForm.year.touched)
+            "
+          >
+            <div *ngIf="dataSubclassForm.year.errors">
+              <div *ngIf="dataSubclassForm.year.errors.required">
+                <span class="err">Năm học còn trống !</span>
+              </div>
+              <div *ngIf="dataSubclassForm.year.errors.pattern">
+                <span class="err">Không đúng định dạng !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Trạng thái *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Trạng thái</mat-label>
+            <mat-select formControlName="status">
+              <mat-option>None</mat-option>
+              <mat-option [value]="true">Đã học xong</mat-option>
+              <mat-option [value]="false">Đang học</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataSubclassForm.status.invalid &&
+              (dataSubclassForm.status.dirty || dataSubclassForm.status.touched)
+            "
+          >
+            <div *ngIf="dataSubclassForm.status.errors">
+              <div *ngIf="dataSubclassForm.status.errors.required">
+                <span class="err">Lớp học còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 form-group mg-t-8">
+          <ng-container
+            *ngIf="
+              dataSubclassForm.stuId.valid &&
+              dataSubclassForm.classId.valid &&
+              dataSubclassForm.year.valid &&
+              dataSubclassForm.status.valid
+            "
+          >
+            <button
+              type="submit"
+              class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+            >
+              Cập nhật
+            </button>
+          </ng-container>
+          <button
+            type="reset"
+            class="btn-fill-lg bg-blue-dark btn-hover-yellow"
+          >
+            Đặt lại
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

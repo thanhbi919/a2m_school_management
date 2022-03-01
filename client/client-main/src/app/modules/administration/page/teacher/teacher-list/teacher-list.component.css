@@ -1,0 +1,12 @@
+tbody tr:hover {
+    color: cadetblue;
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+thead tr th i:hover{
+    cursor: pointer;
+}
+.table-responsive{
+    min-height: 60vh !important;
+}

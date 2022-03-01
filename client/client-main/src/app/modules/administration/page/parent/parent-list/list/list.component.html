@@ -1,0 +1,66 @@
+<div class="table-responsive">
+  <table class="table display data-table text-nowrap">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Tên phụ huynh</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pageSlice">
+        <td>{{ p.id }}</td>
+        <td>{{ p.parentName }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.telephone }}</td>
+        <td>{{ p.birthday }}</td>
+        <td>{{ p.gender }}</td>
+        <td>
+          <div class="dropdown">
+            <a
+              href="javascript:void(0)"
+              class=""
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="flaticon-more-button-of-three-dots"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <!-- <a
+                class="dropdown-item"
+                href="javascript:void(0)"
+                (click)="onClikDeleteParent(p.id)"
+                ><i class="fas fa-times text-orange-red"></i>&ensp;Xóa</a
+              > -->
+              <a class="dropdown-item" routerLink="detail/{{ p.id }}"
+                ><i class="fas fa-cogs text-dark-pastel-green"></i>&ensp;Xem chi
+                tết</a
+              >
+              <a
+                class="dropdown-item"
+                href="javascript:void(0)"
+                routerLink="update/{{ p.id }}"
+                ><i class="fas fa-redo-alt text-orange-peel"></i>&ensp;Cập
+                nhật</a
+              >
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <mat-paginator
+    [length]="length"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

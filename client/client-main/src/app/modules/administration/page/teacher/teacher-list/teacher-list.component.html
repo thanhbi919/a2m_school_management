@@ -1,0 +1,71 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý giáo viên</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Danh sách giáo viên</h3>
+      </div>
+
+    </div>
+    <app-search-teacher></app-search-teacher>
+    <div class="table-responsive">
+      <table class="table display data-table text-nowrap">
+        <thead>
+          <tr>
+            <th>
+              ID
+            </th>
+
+            <th>Họ và tên </th>
+            <th>Giới tính</th>
+            <th>Subject</th>
+            <th>Phone</th>
+            <th>E-mail</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!---->
+          <tr *ngFor="let tempTeacher of teachers">
+            <td routerLink="/a2m/teacher/detail/{{tempTeacher.id}}" routerLinkActive="active-link">
+              {{tempTeacher.id}}</td>
+            <td routerLink="/a2m/teacher/detail/{{tempTeacher.id}}" routerLinkActive="active-link">
+              {{tempTeacher.teacherName}}</td>
+            <td routerLink="/a2m/teacher/detail/{{tempTeacher.id}}" routerLinkActive="active-link">
+              {{tempTeacher.gender}}</td>
+            <td routerLink="/a2m/teacher/detail/{{tempTeacher.id}}" routerLinkActive="active-link">
+              {{tempTeacher.objSubject?.subjectName}}</td>
+            <td routerLink="/a2m/teacher/detail/{{tempTeacher.id}}" routerLinkActive="active-link">
+              {{tempTeacher.telephone}}</td>
+            <td routerLink="/a2m/teacher/detail/{{tempTeacher.id}}" routerLinkActive="active-link">{{tempTeacher.email}}
+            </td>
+            <td>
+              <div class="dropdown">
+                <a href="#" data-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <span class="flaticon-more-button-of-three-dots"></span>
+                                        </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" routerLink="/a2m/teacher/detail/{{tempTeacher.id}}"
+                    routerLinkActive="active-link"><i class="fas fa-cogs text-dark-pastel-green"></i>Chi tiết</a>
+                  <a class="dropdown-item" routerLink="/a2m/teacher/update/{{tempTeacher.id}}"
+                    routerLinkActive="active-link"><i class="fas fa-cogs text-dark-pastel-green"></i>Cập nhật</a>
+                  <button class="dropdown-item" (click)="deleteTeacher(tempTeacher.id)"><i
+                      class="fas fa-times text-orange-red"></i>Xoá giáo viên</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!--end-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--pagination-->
+
+  <mat-paginator [length]='length' [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="pageEvent = $event ; paginationHandle()" aria-label="Select page">
+  </mat-paginator>
+</div>

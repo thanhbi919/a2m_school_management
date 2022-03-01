@@ -1,0 +1,225 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý liên hệ học sinh</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Liên hệ của học sinh</h3>
+      </div>
+    </div>
+    <form
+      class="new-added-form"
+      [formGroup]="parentForm"
+      (ngSubmit)="obSubmitFormParent()"
+    >
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Mã phụ huynh *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Nhập mã học sinh"
+              formControlName="id"
+              readonly="true"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.id.invalid &&
+              (dataParentForm.id.dirty || dataParentForm.id.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.id.errors">
+              <div *ngIf="dataParentForm.id.errors.required">
+                <span class="err">Mã học sinh còn trống !</span>
+              </div>
+              <div *ngIf="dataParentForm.id.errors.pattern">
+                <span class="err">Mã sinh viên không chứa chữ !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Tên phụ huynh *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Nhập tên phụ huynh"
+              formControlName="parentName"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.parentName.invalid &&
+              (dataParentForm.parentName.dirty ||
+                dataParentForm.parentName.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.parentName.errors">
+              <div *ngIf="dataParentForm.parentName.errors.required">
+                <span class="err">Tên phụ huynh còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Giới tính *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn giới tính</mat-label>
+            <mat-select [(value)]="selected" formControlName="gender">
+              <mat-option>None</mat-option>
+              <mat-option value="Nam">Nam</mat-option>
+              <mat-option value="Nữ">Nữ</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.gender.invalid &&
+              (dataParentForm.gender.dirty || dataParentForm.gender.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.gender.errors">
+              <div *ngIf="dataParentForm.gender.errors.required">
+                <span class="err">Giới tính còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Ngày sinh *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn ngày sinh</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthday"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.birthday.invalid &&
+              (dataParentForm.birthday.dirty || dataParentForm.birthday.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.birthday.errors">
+              <div *ngIf="dataParentForm.birthday.errors.required">
+                <span class="err">Ngày sinh còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Điện thoại *</label>
+          <mat-form-field class="full-width" appearance="fill">
+            <input
+              type="tel"
+              matInput
+              placeholder="035-555-1234"
+              formControlName="telephone"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.telephone.invalid &&
+              (dataParentForm.telephone.dirty ||
+                dataParentForm.telephone.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.telephone.errors">
+              <div *ngIf="dataParentForm.telephone.errors.required">
+                <span class="err">Số điện thoại còn trống !</span>
+              </div>
+              <div *ngIf="dataParentForm.telephone.errors.pattern">
+                <span class="err">Số điện thoại không đúng định dạng !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Email *</label>
+          <mat-form-field class="full-width" appearance="fill">
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              placeholder="Ex. pat@example.com"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.email.invalid &&
+              (dataParentForm.email.dirty || dataParentForm.email.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.email.errors">
+              <div *ngIf="dataParentForm.email.errors.required">
+                <span class="err">Email còn trống !</span>
+              </div>
+              <div *ngIf="dataParentForm.email.errors.email">
+                <span class="err">Email không đúng định dạng !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-12 form-group">
+          <label>Đại chỉ *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <textarea
+              matInput
+              placeholder="Nhập địa chỉ..."
+              formControlName="address"
+              rows="6"
+            ></textarea>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataParentForm.address.invalid &&
+              (dataParentForm.address.dirty || dataParentForm.address.touched)
+            "
+          >
+            <div *ngIf="dataParentForm.address.errors">
+              <div *ngIf="dataParentForm.address.errors.required">
+                <span class="err">Địa chỉ còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 form-group mg-t-8">
+          <ng-container
+            *ngIf="
+              dataParentForm.id.valid &&
+              dataParentForm.parentName.valid &&
+              dataParentForm.gender.valid &&
+              dataParentForm.birthday.valid &&
+              dataParentForm.telephone.valid &&
+              dataParentForm.email.valid &&
+              dataParentForm.address.valid
+            "
+          >
+            <button
+              type="submit"
+              class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+            >
+              Cập nhật
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

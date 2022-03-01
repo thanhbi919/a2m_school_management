@@ -1,0 +1,132 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý tài khoản</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Tất cả tài khoản</h3>
+      </div>
+    </div>
+    <form class="mg-b-20">
+      <div class="row gutters-8">
+          <mat-form-field class="full-width col-3-xxxl col-xl-3 col-lg-3 col-12 form-group" appearance="fill">
+            <mat-label>Tìm kiếm theo tên tài khoản</mat-label>
+            <input matInput maxlength="256" [(ngModel)]=searchUser name="searchByUsername">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+            <mat-label >Tìm kiếm theo quyền người dùng</mat-label>
+            <mat-select [(value)] = "searchRole" >
+              <mat-option value = "">Tất cả</mat-option>
+              <mat-option value = "Teacher">Giáo viên</mat-option>
+              <mat-option value = "Manager">Quản lí</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div class="col-1-xxxl col-xl-5 col-lg-3 col-12 form-group">
+          <button  class="fw-btn-fill btn-gradient-yellow" (click)="search()" >
+            SEARCH
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="table-responsive">
+      <table class="table display data-table text-nowrap">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <!-- <th>Photo</th> -->
+            <th >Tài khoản</th>
+            <th>Mật khẩu</th>
+            <th >Quyền người dùng</th>
+            <th>Trạng thái</th>
+            <th >Action</th>
+            <!-- <th>abc</th> -->
+          </tr>
+        </thead>
+          <td>
+              <ng-container *ngIf="totalPage===0">
+                <h1>Không tìm thấy kết quả</h1>
+              </ng-container>
+          </td>
+        <tbody *ngFor="let user of accountList;index as i" id="row{{user.id}}">
+
+          <tr>
+            <td>
+              {{user.id}}
+            </td>
+            <td >
+              <ng-container *ngIf="stateEdit !=user.id; else elseTemplate" >
+                {{user.username}}
+              </ng-container>
+              <ng-template #elseTemplate>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Tài khoản</mat-label>
+                  <input matInput required value={{user.username}} [(ngModel)]="user.username">
+                  <mat-error>Tài khoản không hợp lệ,<strong>vui lòng nhập lại</strong></mat-error>
+                </mat-form-field>
+              </ng-template>
+            </td>
+            <td >
+              <ng-container *ngIf="stateEdit !=user.id; else elseTemplate1">
+                ***
+              </ng-container>
+              <ng-template #elseTemplate1>
+                <mat-form-field appearance="fill">
+                  <mat-label>Mật khẩu</mat-label>
+                  <input type="text" matInput required value="***" [(ngModel)]="password">
+                  <mat-error>Mật khẩu không hợp lệ,<strong>vui lòng nhập lại</strong></mat-error>
+                </mat-form-field>
+              </ng-template>
+            </td>
+            <td >
+              <ng-container *ngIf="stateEdit !=user.id; else elseTemplate2">
+                 <ng-container *ngIf="user.listRole[0].name =='Teacher'">Giáo viên</ng-container>
+                 <ng-container *ngIf="user.listRole[0].name =='Manager'">Quản lí</ng-container>
+              </ng-container>
+              <ng-template #elseTemplate2>
+                <mat-form-field appearance="fill">
+                  <mat-label >Quyền người dùng</mat-label>
+                  <mat-select [(value)] = "user.listRole[0].name" >
+                    <mat-option value = "Teacher">Giáo viên</mat-option>
+                    <mat-option value = "Manager">Quản lí</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="stateEdit !=user.id; else elseTemplate3">
+                {{user.status?"Hoạt động":"Không hoạt động"}}
+              </ng-container>
+              <ng-template #elseTemplate3>
+                <mat-form-field appearance="fill">
+                  <mat-label>Trạng thái</mat-label>
+                  <mat-select matNativeControl  [(value)] = "user.status" >
+                    <mat-option value = "0">Chưa kích hoạt</mat-option>
+                    <mat-option value = "1">Hoạt động</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-template>
+            </td>
+
+            <td >
+              <button mat-stroked-button color="primary" id="button_edit{{user.id}}" (click)="edit(user.id,i)">Sửa</button>
+              <button mat-stroked-button color="warn"  (click)="delete(user.id)" >Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <mat-paginator [length]="totalAccount"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 20, 50]"
+                (page)="onPageChange($event)"
+                aria-label="Select page">
+    </mat-paginator>
+    </div>
+
+  </div>
+</div>
+
+

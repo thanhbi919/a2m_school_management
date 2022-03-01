@@ -1,0 +1,71 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý tài khoản</h1>
+</div>
+<div class="row">
+  <div class=" col-12">
+      <div class="card height-auto">
+          <div class="card-body">
+              <div class="heading-layout1">
+                  <div class="item-title">
+                      <h3>Thêm tài khoản</h3>
+                  </div>
+              </div>
+              <form [formGroup]='form' class="new-added-form" (ngSubmit)="onSubmit()">
+                  <div class="row d-flex">
+                      <div class=" col-lg-6 col-12 form-group">
+                        <mat-form-field style="width: 100%;" hintLabel="Tối thiểu 5 kí tự, tối đa 20 kí tự" appearance="fill">
+                          <mat-label>Tài khoản</mat-label>
+                          <input matInput  formControlName='username' minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){0,20}[a-zA-Z0-9]$" >
+                          <mat-error *ngIf="form.controls.username?.hasError('required') && form.controls.username?.touched">Tài khoản không thể bỏ trống</mat-error>
+                          <mat-error *ngIf="form.controls.username?.hasError('pattern') && form.controls.username?.touched">Tài khoản không hợp lệ </mat-error>
+                          <mat-error *ngIf="form.controls.username?.hasError('minlength') && form.controls.username?.touched">Tài khoản tối thiểu 5 kí tự</mat-error>
+                          <mat-error *ngIf="form.controls.username?.hasError('maxlength') && form.controls.username?.touched">Tài khoản tối thiểu 20 kí tự</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class=" col-lg-6 col-12 form-group">
+                        <mat-form-field style="width:100%" appearance="fill">
+                          <mat-label>Mật khẩu</mat-label>
+                          <input matInput  formControlName='password' >
+                          <mat-error *ngIf="form.controls.password?.hasError('required') && form.controls.password?.touched">Mật khẩu không thể bỏ trống</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class=" col-lg-6 col-12 form-group">
+                        <mat-form-field  style="width:100%" appearance="fill" >
+                          <mat-label>Quyền người dùng</mat-label>
+                          <mat-select formControlName = "role">
+                            <mat-option value="Teacher">Giáo viên</mat-option>
+                            <mat-option value="Manager">Quản lí</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="form.controls.role?.hasError('required') && form.controls.role?.touched">Quyền người dùng không thể bỏ trống</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class=" col-lg-6 col-12 form-group">
+                        <mat-form-field style="width:100%"  appearance="fill" >
+                          <mat-label>Trạng thái</mat-label>
+                          <mat-select formControlName = "status">
+                            <mat-option value="0">Chưa kích hoạt</mat-option>
+                            <mat-option value="1">Hoạt động</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="form.controls.status?.hasError('required') && form.controls.status?.touched">Trạng thái không thể bỏ trống</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class=" col-lg-6 col-12 form-group">
+                        <mat-form-field style="width:100%"  appearance="fill" >
+                          <mat-label>Tên của giáo viên</mat-label>
+                          <mat-select formControlName = "teacherId" >
+                            <mat-option *ngFor="let item of listTeachers" value="{{item.id}}">{{item.teacher_name}}</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="form.controls.teacherId?.hasError('required') && form.controls.teacherId?.touched">Tên của giáo viên không thể bỏ trống</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-12 form-group mg-t-8">
+                          <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Lưu</button>
+                          <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Đặt lại</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,93 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý liên hệ học sinh</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thông tin phụ huynh</h3>
+      </div>
+    </div>
+    
+    <div class="single-info-details row">
+      <div class="col-md-3">
+        <div class="item-img" *ngFor="let img of parent.listImage">
+          <img src="{{apiHost}}/{{ img.location }}" alt="Ảnh học sinh" width="100%"/>
+        </div>
+        <figcaption>
+          <div class="careerfy-fileUpload">
+            <span><i class="fas fa-times careerfy-add"></i> Sửa ảnh</span>
+            <input type="file" class="careerfy-upload" (change)="onChangeImage($event)"/>
+          </div>  
+        </figcaption>
+        
+      </div>
+      <div class="item-content ">
+        <div class="header-inline item-header">
+          <h3 class="text-dark-medium font-medium">{{ parent.parentName }}</h3>
+          <div class="header-elements">
+            <ul>
+              <li>
+                <a href="javascript:void(0)" (click)="obSumitRouter()"
+                  ><i class="far fa-edit"></i
+                ></a>
+              </li>
+              <!-- <li><a href="#"><i class="fas fa-print"></i></a></li>
+                            <li><a href="#"><i class="fas fa-download"></i></a></li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="info-table table-responsive">
+          <table class="table text-nowrap">
+            <tbody>
+              <tr>
+                <td>ID:</td>
+                <td class="font-medium text-dark-medium">{{ parent.id }}</td>
+              </tr>
+              <tr>
+                <td>Họ và tên:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ parent.parentName }}
+                </td>
+              </tr>
+              <tr>
+                <td>Giới tính:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ parent.gender }}
+                </td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td class="font-medium text-dark-medium">{{ parent.email }}</td>
+              </tr>
+              <tr>
+                <td>Số điện thoại:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ parent.telephone }}
+                </td>
+              </tr>
+              <tr>
+                <td>Ngày sinh:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ parent.birthday }}
+                </td>
+              </tr>
+              <tr>
+                <td>Địa chỉ:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ parent.address }}
+                </td>
+              </tr>
+              <tr>
+                <td>Trạng thái:</td>
+                <td class="font-medium text-dark-medium">
+                  {{ parent.status }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

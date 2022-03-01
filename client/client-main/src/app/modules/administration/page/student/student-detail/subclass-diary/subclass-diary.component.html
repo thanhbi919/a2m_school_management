@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-12-xxxl col-12">
+    <div class="card dashboard-card-twelve">
+      <div class="card-body">
+        <div class="heading-layout1">
+          <div class="item-title">
+            <h3>Nhập ký phân lớp của học sinh</h3>
+          </div>
+        </div>
+        <ng-container *ngIf="listSubclassDiary.length != 0">
+          <div class="kids-details-wrap">
+            <div class="row">
+              <div class="col-12-xxxl col-xl-12 col-12">
+                <div class="kids-details-box mb-5">
+                  <div class="table-responsive">  
+                    <table class="table display text-nowrap">
+                      <thead>
+                        <tr>
+                          <th>Tên lớp</th>
+                          <th>Năm học</th>
+                          <th>Trạng thái</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let sub of listSubclassDiary">
+                          <td>{{ sub.objClass.className }}</td>
+                          <td>{{ sub.year }}</td>
+                          <td>{{ sub.status ? "Đã học xong" : "Đang học" }}</td>
+                          <td>
+                            <div class="dropdown">
+                              <a
+                                href="javascript:void(0)"
+                                class=""
+                                data-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <span
+                                  class="flaticon-more-button-of-three-dots"
+                                ></span>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <!-- <a
+                                  class="dropdown-item"
+                                  href="javascript:void(0)" (click)="obSubmitDelete(sub.id)"
+                                  ><i class="fas fa-times text-orange-red"></i
+                                  >&ensp;Xóa</a
+                                > -->
+                                <a
+                                  class="dropdown-item"
+                                  href="javascript:void(0)" (click)="obSubmitUpdate(sub.id)"
+                                  ><i class="fas fa-redo-alt text-orange-peel"></i
+                                  >&ensp;Cập nhật</a
+                                >
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        
+        <ng-container *ngIf="listSubclassDiary.length == 0">
+          <h4>Chưa có lịch sử phân lớp</h4>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

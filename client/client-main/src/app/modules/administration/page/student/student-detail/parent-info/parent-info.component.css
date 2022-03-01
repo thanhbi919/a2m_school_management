@@ -1,0 +1,23 @@
+.header-elements1 ul li {
+    display: inline-block;
+    margin-right: 5px;
+}
+.header-elements1 ul li a:hover {
+    color: #ff9d01;
+}
+.header-elements1 ul li a {
+    display: block;
+    background-color: #f0f1f3;
+    border-radius: 4px;
+    color: #646464;
+    font-size: 14px;
+    padding: 7px 12px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.ccs img{
+    height: 100% !important;
+}

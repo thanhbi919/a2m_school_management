@@ -1,0 +1,11 @@
+<div class="breadcrumbs-area">
+    <h1>Quản lý học sinh</h1>
+</div>
+
+<app-student-info [stu]="stu" (changeImage)="changeImage($event)"></app-student-info>
+
+<app-parent-info [listParent]="listParent"></app-parent-info>
+
+<app-subclass-diary [stuId]="stuId"></app-subclass-diary>
+
+<app-subject-student></app-subject-student>

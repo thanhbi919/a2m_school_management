@@ -1,0 +1,9 @@
+.single-info-details figcaption{
+    text-align: center;
+}
+.single-info-details .item-img {
+    margin-right: 0 !important;
+}
+.item-content{
+    margin-left: 30px;
+}

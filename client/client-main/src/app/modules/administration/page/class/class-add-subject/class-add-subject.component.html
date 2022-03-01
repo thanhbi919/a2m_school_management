@@ -1,0 +1,118 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý lớp học</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thêm môn học cho lớp</h3>
+      </div>
+    </div>
+    <form
+      class="new-added-form"
+      [formGroup]="classForm"
+      (ngSubmit)="obSubmitForm()"
+    >
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Tên lớp *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn lớp</mat-label>
+            <mat-select formControlName="classId">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let c of listClass" [value]="c.id">{{
+                c.className
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.classId.invalid &&
+              (dataForm.classId.dirty || dataForm.classId.touched)
+            "
+          >
+            <div *ngIf="dataForm.classId.errors">
+              <div *ngIf="dataForm.classId.errors.required">
+                <span class="err">lớp còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+            <label>Môn học *</label>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Chọn môn học</mat-label>
+              <mat-select formControlName="subjectId" (ngModelChange)="findAllTeacher()">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let sub of listSubject" [value]="sub.id">{{
+                  sub.subjectName
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div
+              class="mgr"
+              *ngIf="
+                dataForm.subjectId.invalid &&
+                (dataForm.subjectId.dirty || dataForm.subjectId.touched)
+              "
+            >
+              <div *ngIf="dataForm.subjectId.errors">
+                <div *ngIf="dataForm.subjectId.errors.required">
+                  <span class="err">Giáo viên còn trống !</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Giáo viên phụ trách *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn giáo viên</mat-label>
+            <mat-select formControlName="teacherId">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let t of listTeacher" [value]="t.id">{{
+                t.teacherName
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.teacherId.invalid &&
+              (dataForm.teacherId.dirty || dataForm.teacherId.touched)
+            "
+          >
+            <div *ngIf="dataForm.teacherId.errors">
+              <div *ngIf="dataForm.teacherId.errors.required">
+                <span class="err">Giáo viên còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 form-group mg-t-8">
+          <ng-container
+            *ngIf="
+              dataForm.classId.valid &&
+              dataForm.teacherId.valid &&
+              dataForm.subjectId.valid ">
+            <button
+              type="submit"
+              class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+            >
+              Thêm
+            </button>
+          </ng-container>
+          <button
+            type="reset"
+            class="btn-fill-lg bg-blue-dark btn-hover-yellow"
+          >
+            Đặt lại
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

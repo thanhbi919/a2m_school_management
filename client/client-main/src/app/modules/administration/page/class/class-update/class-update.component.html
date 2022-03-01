@@ -1,0 +1,141 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý lớp học</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Cập nhật lớp học</h3>
+      </div>
+    </div>
+    <form
+      class="new-added-form"
+      [formGroup]="classForm"
+      (ngSubmit)="obSubmitForm()"
+    >
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Tên lớp *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Nhập tên lớp"
+              formControlName="className"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.className.invalid &&
+              (dataForm.className.dirty || dataForm.className.touched)
+            "
+          >
+            <div *ngIf="dataForm.className.errors">
+              <div *ngIf="dataForm.className.errors.required">
+                <span class="err">Tên lớp còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Số lượng *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Số lượng học sinh"
+              formControlName="totalStu"
+            />
+          </mat-form-field>
+          <!-- <input type="text" placeholder="" class="form-control" formControlName="stuId"/> -->
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.totalStu.invalid &&
+              (dataForm.totalStu.dirty || dataForm.totalStu.touched)
+            "
+          >
+            <div *ngIf="dataForm.totalStu.errors">
+              <div *ngIf="dataForm.totalStu.errors.required">
+                <span class="err">Số lượng học sinh còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Giáo viên *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn giáo viên</mat-label>
+            <mat-select formControlName="teacherId">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let t of listTeacher" [value]="t.id">{{
+                t.teacherName
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.teacherId.invalid &&
+              (dataForm.teacherId.dirty || dataForm.teacherId.touched)
+            "
+          >
+            <div *ngIf="dataForm.teacherId.errors">
+              <div *ngIf="dataForm.teacherId.errors.required">
+                <span class="err">Giáo viên còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Trạng thái *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn trạng thái</mat-label>
+            <mat-select formControlName="status">
+              <mat-option>None</mat-option>
+              <mat-option value="Hoạt động">Hoạt động</mat-option>
+              <mat-option value="Không hoạt động">Không hoạt động</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.status.invalid &&
+              (dataForm.status.dirty || dataForm.status.touched)
+            "
+          >
+            <div *ngIf="dataForm.status.errors">
+              <div *ngIf="dataForm.status.errors.required">
+                <span class="err">Trạng thái còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-12 form-group mg-t-8">
+          <ng-container
+            *ngIf="
+              dataForm.className.valid &&
+              dataForm.teacherId.valid &&
+              dataForm.totalStu.valid 
+            "
+          >
+            <button
+              type="submit"
+              class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+            >
+              Cập nhật
+            </button>
+          </ng-container>
+          <button
+            type="reset"
+            class="btn-fill-lg bg-blue-dark btn-hover-yellow"
+          >
+            Đặt lại
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

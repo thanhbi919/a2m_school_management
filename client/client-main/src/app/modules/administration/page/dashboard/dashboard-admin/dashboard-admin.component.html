@@ -1,0 +1,156 @@
+<div class="breadcrumbs-area">
+  <h1>Thống kê</h1>
+</div>
+<!-- Dashboard summery Start Here -->
+<div class="row gutters-20">
+  <div class="col-xl-4 col-sm-6 col-12">
+    <div class="dashboard-summery-one mg-b-20">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <div class="item-icon bg-light-green">
+            <i class="flaticon-classmates text-green"></i>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="item-content">
+            <div class="item-title">Học sinh</div>
+            <div class="item-number">
+              <span class="counter" data-num="150000">{{ totalStu }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="role == 'Manager'" class="col-xl-4 col-sm-6 col-12">
+    <div class="dashboard-summery-one mg-b-20">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <div class="item-icon bg-light-blue">
+            <i class="flaticon-multiple-users-silhouette text-blue"></i>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="item-content">
+            <div class="item-title">Giáo viên</div>
+            <div class="item-number">
+              <span class="counter" data-num="2250">{{ totalTeacher }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-sm-6 col-12">
+    <div class="dashboard-summery-one mg-b-20">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <div class="item-icon bg-light-yellow">
+            <i class="flaticon-couple text-orange"></i>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="item-content">
+            <div class="item-title">Phụ huynh</div>
+            <div class="item-number">
+              <span class="counter" data-num="5690">{{ totalParent }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card dashboard-card-eleven">
+      <div class="card-body">
+        <div class="heading-layout1">
+          <div class="item-title">
+            <h2>Giáo viên mới</h2>
+          </div>
+        </div>
+        <div class="table-box-wrap">
+          <div class="table-responsive student-table-box">
+            <ng-container *ngIf="listTeacher.length == 0">
+              <h2 style="align-items: center;text-align: center;">Không có giáo viên mới</h2>
+            </ng-container>
+            <ng-container *ngIf="listTeacher.length !=0">
+              <table class="table display data-table text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Tên giáo viên</th>
+                    <th>Giới tính</th>
+                    <th>Môn dạy</th>
+                    <th>Ngày sinh</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of listTeacher">
+                    <td>{{ t.id }}</td>
+                    <td>{{ t.teacherName }}</td>
+                    <td>{{ t.gender }}</td>
+                    <td>{{ t.objSubject.subjectName }}</td>
+                    <td>{{ t.birthday }}</td>
+                    <td>{{ t.telephone }}</td>
+                    <td>{{ t.email }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card dashboard-card-eleven">
+      <div class="card-body">
+        <div class="heading-layout1">
+          <div class="item-title">
+            <h2>Học sinh mới</h2>
+          </div>
+        </div>
+        <div class="table-box-wrap">
+          <div
+            class="table-responsive student-table-box"
+          >
+            <ng-container *ngIf="listStu.length == 0">
+              <h3 style="align-items: center;text-align: center;">Không có học sinh mới</h3>
+            </ng-container>
+            <ng-container *ngIf="listStu.length !=0">
+              <table class="table display data-table text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Họ và tên</th>
+                    <th>Giới tính</th>
+                    <th>Ngày sinh</th>
+                    <th>Địa chỉ</th>
+                    <th>Ngày nhập học</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of listStu">
+                    <td>{{ s.id }}</td>
+                    <td>{{ s.stuName }}</td>
+                    <td>{{ s.gender }}</td>
+                    <td>{{ s.birthday }}</td>
+                    <td>{{ s.address }}</td>
+                    <td>{{ s.admissionDate }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Dashboard summery End Here -->

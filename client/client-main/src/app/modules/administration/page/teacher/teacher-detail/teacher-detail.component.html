@@ -1,0 +1,130 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý giáo viên</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thông tin giáo viên</h3>
+      </div>
+      <div class="dropdown">
+        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" routerLink="/a2m/teacher/update/{{teacher.id}}" routerLinkActive="active-link"><i
+              class="fas fa-cogs text-dark-pastel-green"></i>Cập nhật</a>
+          <button class="dropdown-item" (click)="deleteTeacher(teacher.id)"><i
+              class="fas fa-times text-orange-red"></i>Xoá giáo viên</button>
+        </div>
+      </div>
+    </div>
+    <div class="single-info-details">
+      <div class="item-img" >
+        <div *ngFor="let temp of teacher.listImage; let isfirst = last">
+          <img *ngIf="isfirst" src="{{this.apiHost}}/{{temp.location}}" alt="teacher" />         
+        </div>
+        <img *ngIf="teacher.listImage?.length == 0" src="../../../../../../assets/img/figure/teacher-nonavatar.jpg" alt="teacher" />
+        
+      </div>
+      <div class="item-content">
+        <div class="header-inline item-header">
+          <h3 class="text-dark-medium font-medium">{{teacher.teacherName}}</h3>
+          <!-- <div class="header-elements">
+            <ul>
+              <li>
+                <a routerLink="/a2m/teacher/update/{{teacher.id}}"
+                routerLinkActive="active-link">><i class="far fa-edit"></i></a>               
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-print"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-download"></i></a>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+        <p>
+          {{teacher.status}}
+        </p>
+        <div class="info-table table-responsive">
+          <table class="table text-nowrap">
+            <tbody>
+              <tr>
+                <td>Họ tên:</td>
+                <td class="font-medium text-dark-medium">{{teacher.teacherName}}</td>
+              </tr>
+              <tr>
+                <td>Giới tính:</td>
+                <td class="font-medium text-dark-medium">{{teacher.gender}}</td>
+              </tr>
+              <tr>
+                <td>Thời gian nhập trường:</td>
+                <td class="font-medium text-dark-medium">{{teacher.workStartDate}}</td>
+              </tr>
+              <tr>
+                <td>E-mail:</td>
+                <td class="font-medium text-dark-medium">
+                  {{teacher.email}}
+                </td>
+              </tr>
+              <tr>
+                <td>Bộ môn:</td>
+                <td class="font-medium text-dark-medium">{{teacher.objSubject?.subjectName}}</td>
+              </tr>
+              <tr>
+                <td>Lớp:</td>
+                <td *ngIf="teacher.objClass?.className != null" class="font-medium text-dark-medium">
+                  {{teacher.objClass?.className}}</td>
+                <td *ngIf="teacher.objClass?.className == null" class="font-medium text-dark-medium">Chưa được phân lớp
+                </td>
+              </tr>
+              <tr>
+                <td>Địa chỉ:</td>
+                <td class="font-medium text-dark-medium">
+                  {{teacher.address}}
+                </td>
+              </tr>
+              <tr>
+                <td>Số điện thoại:</td>
+                <td class="font-medium text-dark-medium">{{teacher.telephone}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--list student-->
+    <hr>
+    <h3 *ngIf="teacher?.objClass?.listStudent == null">Chưa tham gia giảng dạy</h3>
+    <div *ngIf="teacher?.objClass?.listStudent != null" class="table-responsive">
+      <h3>Danh sách học sinh</h3>      
+      <table class="table display data-table text-nowrap">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Họ và tên</th>
+            <th>Giới tính</th>
+            
+            <th>Ngày sinh</th>
+            <th>Địa chỉ</th>
+            <th>Năm nhập học</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr *ngFor="let tempStudent of teacher?.objClass?.listStudent">
+            <td>{{tempStudent.id}}</td>
+            <td>{{tempStudent.stuName}}</td>
+            <td>{{tempStudent.gender}}</td>
+           
+            <td>{{tempStudent.birthday}}</td>
+            <td>{{tempStudent.address}}</td>
+            <td>{{tempStudent.admissionDate}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-12-xxxl col-12">
+    <div class="card dashboard-card-twelve">
+      <div class="card-body">
+        <div class="heading-layout1">
+          <div class="item-title">
+            <h3>Thông tin liên hệ của học sinh</h3>
+          </div>
+        </div>
+        <ng-container *ngIf="listParent.length !=0">
+          <div class="kids-details-wrap">
+            <div class="row">
+              <ng-container *ngFor="let p of listParent">
+                <div class="col-6-xxxl col-xl-6 col-md-6 col-12 ">
+                  <div class="header-elements1">
+                    <ul>
+                      <li>
+                        <a href="a2m/parent/update/{{p.id}}"><i class="far fa-edit"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="kids-details-box mb-5">
+                    <div class="item-img ccs" *ngFor="let img of p.listImage">
+                      <img
+                        src="{{apiHost}}/{{img.location}}"
+                        alt="kids" width="100%"
+                      />
+                    </div>
+                    <div class="item-content table-responsive">
+                      <table class="table text-nowrap">
+                        <tbody>
+                          <tr>
+                            <td>Tên phụ huynh:</td>
+                            <td>{{p.parentName}}</td>
+                          </tr>
+                          <tr>
+                            <td>Giới tính:</td>
+                            <td>{{p.gender}}</td>
+                          </tr>
+                          <tr>
+                            <td>Ngày sinh:</td>
+                            <td>{{p.birthday}}</td>
+                          </tr>
+                          <tr>
+                            <td>Email:</td>
+                            <td>{{p.email}}</td>
+                          </tr>
+                          <tr>
+                            <td>Số điện thoại:</td>
+                            <td>{{p.telephone}}</td>
+                          </tr>
+                          <tr>
+                            <td>Tình trạng:</td>
+                            <td>{{p.status}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="listParent.length ==0">
+          <h4>Chưa có thông tin tiên hệ</h4>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

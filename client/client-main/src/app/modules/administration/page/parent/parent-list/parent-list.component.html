@@ -1,0 +1,19 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý liên hệ học sinh</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h2>Danh sách phụ huynh</h2>
+      </div>
+    </div>
+    <app-search-form (searchParent)="searchParent($event)"></app-search-form>
+    <ng-container *ngIf="listParent.length !=0">
+      <app-list [listParent]="listParent"></app-list>
+    </ng-container>
+    <ng-container *ngIf="listParent.length == 0">
+      <h3 style="text-align: center;">Không có phụ huynh nào</h3>
+    </ng-container>
+  </div>
+</div>

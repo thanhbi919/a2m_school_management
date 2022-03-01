@@ -1,0 +1,20 @@
+<form class="mg-b-20">
+  <div class="row gutters-8">
+    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+      <input type="number" name="parentId" placeholder="Tìm theo ID ..." class="form-control" [(ngModel)]="dataSearch.parentId" />
+    </div>
+    <div class="col-3-xxxl col-xl-4 col-lg-3 col-12 form-group">
+      <input
+        type="text"
+        placeholder="Tìm kiếm theo tên ..." [(ngModel)]="dataSearch.parentName" name="parentName"
+        class="form-control"
+      />
+    </div>
+    
+    <div class="col-2-xxxl col-xl-2 col-lg-3 col-12 form-group">
+      <button type="button" class="fw-btn-fill btn-gradient-yellow" (click)="onSubmitSearch($event)">
+        Tìm kiếm
+      </button>
+    </div>
+  </div>
+</form>

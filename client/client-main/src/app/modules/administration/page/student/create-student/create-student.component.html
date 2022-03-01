@@ -1,0 +1,252 @@
+<div class="breadcrumbs-area">
+  <h1>Quản lý học sinh</h1>
+</div>
+<div class="card height-auto">
+  <div class="card-body">
+    <div class="heading-layout1">
+      <div class="item-title">
+        <h3>Thêm học sinh mới</h3>
+      </div>
+    </div>
+    <form [formGroup]="stuForm" (ngSubmit)="onSubmit()" class="new-added-form">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Họ và tên</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Nhập tên học sinh"
+              formControlName="stuName"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.stuName.invalid &&
+              (dataForm.stuName.dirty || dataForm.stuName.touched)
+            "
+          >
+            <div *ngIf="dataForm.stuName.errors">
+              <div *ngIf="dataForm.stuName.errors.required">
+                <span class="err">Tên học sinh còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Giới tính *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn giới tính</mat-label>
+            <mat-select [(value)]="selected" formControlName="gender">
+              <mat-option>None</mat-option>
+              <mat-option value="Nam">Nam</mat-option>
+              <mat-option value="Nữ">Nữ</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.gender.invalid &&
+              (dataForm.gender.dirty || dataForm.gender.touched)
+            "
+          >
+            <div *ngIf="dataForm.gender.errors">
+              <div *ngIf="dataForm.gender.errors.required">
+                <span class="err">Giới tính còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Ngày sinh *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn ngày sinh</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthday"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <!-- <i class="far fa-calendar-alt"></i> -->
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.birthday.invalid &&
+              (dataForm.birthday.dirty || dataForm.birthday.touched)
+            "
+          >
+            <div *ngIf="dataForm.birthday.errors">
+              <div *ngIf="dataForm.birthday.errors.required">
+                <span class="err">Ngày sinh còn trống !</span>
+              </div>
+              <div *ngIf="dataForm.birthday.errors.invalidDate">
+                <span class="err"
+                  >Ngày sinh không được lớn hơn ngày hiện tại !</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Ngày nhập học</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn ngày nhập học</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerr"
+              formControlName="admissionDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerr"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerr></mat-datepicker>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.admissionDate.invalid &&
+              (dataForm.admissionDate.dirty || dataForm.admissionDate.touched)
+            "
+          >
+            <div *ngIf="dataForm.admissionDate.errors">
+              <div *ngIf="dataForm.admissionDate.errors.required">
+                <span class="err">Ngày nhập học còn trống !</span>
+              </div>
+              <div *ngIf="dataForm.admissionDate.errors.matching">
+                <span class="err">Ngày nhập học không được trước ngày sinh !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Lớp *</label>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chọn lớp</mat-label>
+            <mat-select formControlName="classId">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let c of listClass" value="{{ c.id }}">{{
+                c.className
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.classId.invalid &&
+              (dataForm.classId.dirty || dataForm.classId.touched)
+            "
+          >
+            <div *ngIf="dataForm.classId.errors">
+              <div *ngIf="dataForm.classId.errors.required">
+                <span class="err">Lớp học còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12 form-group">
+          <label>Năm học * </label>
+          <mat-form-field class="full-width" appearance="fill">
+            <input
+              type="text"
+              matInput
+              formControlName="year"
+              placeholder="2020-2021"
+            />
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.year.invalid &&
+              (dataForm.year.dirty || dataForm.year.touched)
+            "
+          >
+            <div *ngIf="dataForm.year.errors">
+              <div *ngIf="dataForm.year.errors.required">
+                <span class="err">Năm học còn trống !</span>
+              </div>
+              <div *ngIf="dataForm.year.errors.pattern">
+                <span class="err">Không đúng định dạng !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-12 form-group">
+          <label>Địa chỉ</label>
+          <mat-form-field class="full-width" appearance="fill">
+            <textarea
+              matInput
+              placeholder="Nhập địa chỉ..."
+              formControlName="address"
+              rows="6"
+            ></textarea>
+          </mat-form-field>
+          <div
+            class="mgr"
+            *ngIf="
+              dataForm.address.invalid &&
+              (dataForm.address.dirty || dataForm.address.touched)
+            "
+          >
+            <div *ngIf="dataForm.address.errors">
+              <div *ngIf="dataForm.address.errors.required">
+                <span class="err">Địa chỉ còn trống còn trống !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-12 form-group ">
+          <label class="text-dark-medium">Ảnh học sinh *</label>
+          <figcaption>
+            <div class="careerfy-fileUpload">
+              <span><i class="fas fa-times text-orange-red"></i> Chọn ảnh</span>
+              <input type="file" class="careerfy-upload" (change)="onClickFile($event)"/>
+            </div>  
+          </figcaption>
+          <div
+            class="mgr"
+            *ngIf="
+            dataForm.multipartFile.invalid &&
+              (dataForm.multipartFile.dirty )
+            "
+          >
+            <div *ngIf="dataForm.multipartFile.errors">
+              <div *ngIf="dataForm.multipartFile.errors.required">
+                <span class="err">Ảnh còn còn trống !</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-9 col-12 form-group mg-t-30">
+          <ng-container *ngIf="selectedFiles != undefined">
+            <img [src]="url" alt="" width="200px" height="200px" style="border-radius: 5px;margin-top: 15px;">
+          </ng-container>
+        </div>
+        <div class="col-12 form-group mg-t-8">
+          <ng-container *ngIf="dataForm.address.valid && dataForm.year.valid && dataForm.classId.valid && dataForm.admissionDate.valid && dataForm.birthday.valid && dataForm.gender.valid && dataForm.stuName.valid && dataForm.multipartFile.valid">
+            <button
+              type="submit"
+              class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+            >
+              Thêm học sinh
+            </button>
+          </ng-container>
+          <button
+            type="reset"
+            class="btn-fill-lg bg-blue-dark btn-hover-yellow"
+          >
+            Đặt lại
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
